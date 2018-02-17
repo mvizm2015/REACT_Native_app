@@ -1,29 +1,47 @@
-import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import React, { Component } from "react";
+import { StyleSheet, View } from "react-native";
 
-export default class App extends React.Component {
+import PlaceInput from "./src/components/PlaceInput/PlaceInput";
+import PlaceList from "./src/components/PlaceList/PlaceList";
+// import placeImage from "./src/assets/MiamiImage.jpg";
+
+export default class App extends Component {
   state = {
-    placeName: ''
-  }
+    places: []
+  };
 
-  placeNameChangedHandler = val => {
-    this.setState({
-      placeName: val
+  placeAddedHandler = placeName => {
+    this.setState(prevState => {
+      return {
+        places: prevState.places.concat({
+          key: Math.random(),
+          name: placeName,
+          image: {
+            uri: "http://media.royalcaribbean.com/content/shared_assets/images/ports/hero/MIA_01.jpg"
+          }
+        })
+      };
+    });
+  };
+
+  placeDeletedHandler = key => {
+    this.setState(prevState => {
+      return {
+        places: prevState.places.filter(place => {
+          return place.key !== key;
+        })
+      };
     });
   };
 
   render() {
     return (
       <View style={styles.container}>
-      <View style={styles.inputContainer}>
-      <TextInput 
-            placeholder="An Awesome Place!"
-            value={this.state.placeName}
-            onChangeText={this.placeNameChangedHandler}
-            style={styles.placeInput}
+        <PlaceInput onPlaceAdded={this.placeAddedHandler} />
+        <PlaceList
+          places={this.state.places}
+          onItemDeleted={this.placeDeletedHandler}
         />
-        <Button title="Add" style={styles.placeButton}/>
-      </View>
       </View>
     );
   }
@@ -33,22 +51,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 26,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-  inputContainer: {
-    // flex: 1,
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center"
-  },
-  placeInput: {
-  width: "70%"
-
-  },
-  placeButton: {
-    width: "30%"
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "flex-start"
   }
 });
