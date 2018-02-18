@@ -2,8 +2,11 @@ import { Navigation } from 'react-native-navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const startTabs = () => {
+    // Promise object with all method that takes array of promises
     Promise.all([
+        // array [0]
         Icon.getImageSource("md-map", 30),
+        // array [1]
         Icon.getImageSource("ios-share-alt", 30)
     ]).then(sources => {
         Navigation.startTabBasedApp({

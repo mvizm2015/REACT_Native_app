@@ -569,7 +569,6 @@
 		1E1102A12039483200CDFDDF /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				1E1102A72039483200CDFDDF /* Ionicons.ttf */,
 				1E1102A32039483200CDFDDF /* Feather.ttf */,
 				1E1102A42039483200CDFDDF /* Entypo.ttf */,
 				1E1102A52039483200CDFDDF /* MaterialCommunityIcons.ttf */,
@@ -652,6 +651,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				1E1102A72039483200CDFDDF /* Ionicons.ttf */,
 				1E1102A22039483200CDFDDF /* Octicons.ttf */,
 				1E1102A12039483200CDFDDF /* Fonts */,
 				13B07FAE1A68108700A75B9A /* rncourse */,
